@@ -41,9 +41,18 @@ body {
 .new-book-btn {
     padding: 1.75rem;
 }
+
 .header {
     font-weight: bold;
     font-size: 4rem;
 
     margin-top: 2rem;
+}
+
+.book-card {
+    border: 1px solid black;
+    border-radius: 1rem;
+
+    align-self: start;
+    padding: 1rem;
 }
