@@ -38,10 +38,10 @@ body {
     border-radius: 1rem;
 }
 
-.new-book-btn {
-    padding: 1.75rem;
-
+.button {
     border-radius: 1rem;
+    border: none;
+    outline: none;
 }
 
 .header {
@@ -97,8 +97,55 @@ input {
     font-size: 2rem;
 }
 
+.new-book-btn {
+    padding: 1.5rem;
+    background-color: lightskyblue;
+
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
 .book-buttons {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
+}
+
+.dialog-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.dialog-btn {
+    padding: 1rem;
+}
+
+.dialog-btn.submit-btn {
+    background-color: greenyellow;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.dialog-btn.cancel-btn {
+    background-color: red;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.card-btn {
+    padding: 0.5rem;
+}
+
+.card-btn.remove-book-btn {
+    background-color: red;
+    font-size: 1rem;
+    color: white;
+}
+
+.card-btn.toggle-read-btn {
+    background-color: lightskyblue;
+    font-size: 1rem;
+    color: black;
 }

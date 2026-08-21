@@ -41,8 +41,8 @@ function createBookCard(book) {
         <div class="book-pages">Pages: ${book.pages}</div>
         <div class="book-isRead">Read: ${book.isRead ? "Yes" : "No"}</div>
         <div class="book-buttons">
-            <button class="remove-book-btn">Remove Book</button>
-            <button class="toggle-read-btn">Toggle Read</button>
+            <button class="button card-btn remove-book-btn">Remove Book</button>
+            <button class="button card-btn toggle-read-btn">Toggle Read</button>
         </div>
     `;
     const removeButton = card.querySelector(".remove-book-btn");
