@@ -5,6 +5,7 @@ const newBookDialog = document.querySelector(".new-book-dialog");
 const newBookForm = document.querySelector(".new-book-form");
 const cancelButton = document.querySelector(".cancel-btn");
 
+
 const books = []
 
 function Book(title: string, author: string, pages: number, isRead: boolean, bookID: string) {
@@ -30,20 +31,38 @@ function addBookToLibrary(title: string, author: string, pages: number, isRead: 
 function createBookCard(book: Book) {
     const card = document.createElement("div");
     card.classList.add("book-card");
-    card.dataset.bookID = book.bookID;
+    card.dataset.bookId = book.bookID;
 
     card.innerHTML = `
         <div class="book-title">${book.title}</div>
         <div class="book-author">Author: ${book.author}</div>
         <div class="book-pages">Pages: ${book.pages}</div>
         <div class="book-isRead">Read: ${book.isRead ? "Yes" : "No"}</div>
+        <div class="book-buttons">
+            <button class="remove-book-btn">Remove Book</button>
+        </div>
     `;
+
+    const removeButton = card.querySelector(".remove-book-btn");
+    removeButton?.addEventListener("click", () => {
+        deleteBook(book.bookID);
+        console.log("Book removed")
+    });
 
     return card;
 }
 
+function deleteBook(bookID: string) {
+    const index = books.findIndex((book) => book.bookID === bookID);
+    if(index === -1) return;
 
-addBookToLibrary("The Hobbit", "J.R.R Tolkien", 295, false);
+    books.splice(index, 1);
+
+    const card = document.querySelector(`[data-book-id="${bookID}"]`);
+    card?.remove();
+
+}
+
 
 // Event Listeners
 newBookButton?.addEventListener("click", () => {
