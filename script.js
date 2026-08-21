@@ -13,6 +13,15 @@ function Book(title, author, pages, isRead, bookID) {
     this.isRead = isRead;
     this.bookID = bookID;
 }
+Book.prototype.toggleReadStatus = function () {
+    this.isRead = !this.isRead;
+    const card = document.querySelector(`[data-book-id="${this.bookID}"]`);
+    const isReadText = card?.querySelector(".book-isRead");
+    if (!isReadText) {
+        return;
+    }
+    isReadText.textContent = `Read: ${this.isRead ? "Yes" : "No"}`;
+};
 function addBookToLibrary(title, author, pages, isRead) {
     const bookID = crypto.randomUUID();
     // Create the book and then add it to the array
@@ -33,12 +42,17 @@ function createBookCard(book) {
         <div class="book-isRead">Read: ${book.isRead ? "Yes" : "No"}</div>
         <div class="book-buttons">
             <button class="remove-book-btn">Remove Book</button>
+            <button class="toggle-read-btn">Toggle Read</button>
         </div>
     `;
     const removeButton = card.querySelector(".remove-book-btn");
     removeButton?.addEventListener("click", () => {
         deleteBook(book.bookID);
         console.log("Book removed");
+    });
+    const toggleReadButton = card.querySelector(".toggle-read-btn");
+    toggleReadButton?.addEventListener("click", () => {
+        book.toggleReadStatus();
     });
     return card;
 }
@@ -50,6 +64,9 @@ function deleteBook(bookID) {
     const card = document.querySelector(`[data-book-id="${bookID}"]`);
     card?.remove();
 }
+/*
+ TODO:
+*/
 // Event Listeners
 newBookButton?.addEventListener("click", () => {
     newBookDialog?.showModal();

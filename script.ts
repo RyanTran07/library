@@ -16,6 +16,16 @@ function Book(title: string, author: string, pages: number, isRead: boolean, boo
     this.bookID = bookID;
 }
 
+Book.prototype.toggleReadStatus = function() {
+    this.isRead = !this.isRead;
+
+    const card = document.querySelector(`[data-book-id="${this.bookID}"]`);
+    const isReadText = card?.querySelector(".book-isRead");
+
+    if(!isReadText) { return; }
+    isReadText.textContent = `Read: ${this.isRead ? "Yes" : "No"}`;
+}
+
 function addBookToLibrary(title: string, author: string, pages: number, isRead: boolean) {
     const bookID = crypto.randomUUID();
 
@@ -40,6 +50,7 @@ function createBookCard(book: Book) {
         <div class="book-isRead">Read: ${book.isRead ? "Yes" : "No"}</div>
         <div class="book-buttons">
             <button class="remove-book-btn">Remove Book</button>
+            <button class="toggle-read-btn">Toggle Read</button>
         </div>
     `;
 
@@ -47,6 +58,11 @@ function createBookCard(book: Book) {
     removeButton?.addEventListener("click", () => {
         deleteBook(book.bookID);
         console.log("Book removed")
+    });
+
+    const toggleReadButton = card.querySelector(".toggle-read-btn");
+    toggleReadButton?.addEventListener("click", () => {
+        book.toggleReadStatus();
     });
 
     return card;
@@ -62,6 +78,12 @@ function deleteBook(bookID: string) {
     card?.remove();
 
 }
+
+/*
+ TODO:
+*/
+
+
 
 
 // Event Listeners
