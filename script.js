@@ -1,7 +1,10 @@
 "use strict";
-// Event Listeners
+// Grabbing DOM elements
 const newBookButton = document.querySelector(".new-book-btn");
 const booksContainer = document.querySelector(".books-container");
+const newBookDialog = document.querySelector(".new-book-dialog");
+const newBookForm = document.querySelector(".new-book-form");
+const cancelButton = document.querySelector(".cancel-btn");
 const books = [];
 function Book(title, author, pages, isRead, bookID) {
     this.title = title;
@@ -32,3 +35,20 @@ function createBookCard(book) {
     return card;
 }
 addBookToLibrary("The Hobbit", "J.R.R Tolkien", 295, false);
+// Event Listeners
+newBookButton?.addEventListener("click", () => {
+    newBookDialog?.showModal();
+});
+cancelButton?.addEventListener("click", () => {
+    newBookDialog?.close();
+});
+newBookForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+    const isRead = document.getElementById("isRead").checked;
+    addBookToLibrary(title, author, pages, isRead);
+    newBookForm.reset();
+    newBookDialog?.close();
+});

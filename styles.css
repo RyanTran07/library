@@ -40,6 +40,8 @@ body {
 
 .new-book-btn {
     padding: 1.75rem;
+
+    border-radius: 1rem;
 }
 
 .header {
@@ -55,4 +57,32 @@ body {
 
     align-self: start;
     padding: 1rem;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+
+    margin: 1rem;
+}
+
+input {
+    height: 1.5rem;
+}
+
+.new-book-dialog {
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    max-width: 400px;
+}
+
+.input-form {
+    margin-top: 1rem;
+}
+
+.new-book-form-title {
+    font-weight: bold;
+    font-size: 2rem;
 }
